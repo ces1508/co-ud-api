@@ -4,6 +4,7 @@ const { HomeController } = require('../controllers')
 const AppRouter = require('../routes')
 const { HomeRouter } = require('../routes/index.router')
 const { APPLICATION_NAME, DATABASE_URI, PORT } = require('../config')
+const { Comment, Idea, User } = require('../models')
 const Server = require('.')
 
 const container = createContainer()
@@ -21,6 +22,10 @@ container.register({
   DATABASE_URI: asValue(DATABASE_URI)
 }).register({
   server: asClass(Server).singleton()
+}).register({
+  UserModel: asValue(User),
+  IdeaModel: asValue(Idea),
+  CommentModel: asValue(Comment)
 })
 
 module.exports = container
