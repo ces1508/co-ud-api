@@ -3,24 +3,24 @@ class BaseRespository {
     this.model = model
   }
 
-  async get (id) {
-    return await this.model.findById(id)
+  get (id) {
+    return this.model.findById(id)
   }
 
   getAll () {
-    return await this.model.find()
+    return this.model.find()
   }
 
-  async create (data) {
-    return await this.model.create(data)
+  create (data) {
+    return this.model.create(data)
   }
 
-  async update (id, data) {
-    return await this.model.findByIdAndUpdate(id, data, { new: true })
+  update (id, data) {
+    return this.model.findByIdAndUpdate(id, data, { new: true })
   }
 
-  async delete (id) {
-    return await this.model.findByIdAndDelete(id)
+  delete (id) {
+    return this.model.findByIdAndDelete(id)
   }
 }
 

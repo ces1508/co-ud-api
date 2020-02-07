@@ -5,6 +5,7 @@ const AppRouter = require('../routes')
 const { HomeRouter } = require('../routes/index.router')
 const { APPLICATION_NAME, DATABASE_URI, PORT } = require('../config')
 const { Comment, Idea, User } = require('../models')
+const { UserRepository, IdeaRepository, CommentRepository } = require('../repositories')
 const Server = require('.')
 
 const container = createContainer()
@@ -26,6 +27,10 @@ container.register({
   UserModel: asValue(User),
   IdeaModel: asValue(Idea),
   CommentModel: asValue(Comment)
+}).register({
+  IdeaRepository: asClass(IdeaRepository).singleton(),
+  CommentRepository: asClass(CommentRepository).singleton(),
+  UserRepository: asClass(UserRepository).singleton()
 })
 
 module.exports = container
