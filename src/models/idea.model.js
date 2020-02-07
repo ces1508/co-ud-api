@@ -1,4 +1,5 @@
-const mongoose, { Schema } = require('mongoose')
+const mongoose = require('mongoose')
+const { Schema } = mongoose
 
 const IdeaSchema = new Schema({
   idea: { type: String, required: true },
@@ -14,6 +15,6 @@ const IdeaSchema = new Schema({
   comments: [{ type: Schema.Types.ObjectId, ref: 'comment', autopopulate: true }]
 })
 
-IdeaSchema.plugin(require("mongoose-autopopulate"))
+IdeaSchema.plugin(require('mongoose-autopopulate'))
 
 module.exports = mongoose.model('ida', IdeaSchema)

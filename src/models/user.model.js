@@ -1,5 +1,6 @@
-const mongoose, { Schema } = require('mongoose')
+const mongoose = require('mongoose')
 const { compare, hash, genSalt } = require('bcryptjs')
+const { Schema } = mongoose
 
 const UserSchema = new Schema({
   name: {
@@ -26,7 +27,7 @@ UserSchema.pre('save', async function userBeforeSave (next) {
 })
 
 UserSchema.methods.toJson = function () {
-  let user = this.toObject()
+  const user = this.toObject()
   delete user.password
   return user
 }
@@ -37,4 +38,3 @@ UserSchema.methods.comparePasswords = async function (password) {
 }
 
 module.exports = mongoose.model('user', UserSchema)
-
